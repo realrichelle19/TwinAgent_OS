@@ -5,7 +5,9 @@ import { TwinAgentModule } from './modules/twinagent/twinagent.module.js';
  * Root Application Module for TwinAgent OS (NitroStack Framework)
  */
 @McpApp({
-  module: AppModule,
+  get module() {
+    return AppModule;
+  },
   server: {
     name: 'twinagent-os-server',
     version: '1.0.0',
@@ -13,7 +15,7 @@ import { TwinAgentModule } from './modules/twinagent/twinagent.module.js';
   logging: {
     level: 'info',
   },
-})
+} as any)
 @Module({
   name: 'twinagent-os',
   description: 'Proactive Enterprise Digital Twin MCP Server',

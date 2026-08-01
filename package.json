@@ -1,15 +1,20 @@
 {
-  "name": "twinagent-os-backend",
+  "name": "twinagent-os-mcp",
   "version": "1.0.0",
-  "description": "Proactive Enterprise Digital Twin Backend Engine for TwinAgent OS",
-  "main": "dist/server.js",
+  "description": "Proactive Enterprise Digital Twin Backend Engine & MCP Server for TwinAgent OS",
+  "type": "module",
+  "main": "dist/index.js",
   "scripts": {
-    "dev": "tsx watch src/server.ts",
+    "dev": "nitrostack-cli dev",
+    "build": "prisma generate && nitrostack-cli build",
+    "start": "npm run build && nitrostack-cli start",
+    "start:prod": "nitrostack-cli start",
+    "generate:types": "nitrostack-cli generate types",
+    "upgrade": "nitrostack-cli upgrade",
+    "install:all": "nitrostack-cli install",
+    "backend:dev": "tsx watch src/server.ts",
     "mcp:start": "tsx src/mcp/cli.ts",
-    "mcp2:start": "npm --prefix src/mcp_2 start",
     "validate:mcp": "tsx scripts/validate-mcp.ts",
-    "build": "tsc",
-    "start": "node dist/server.js",
     "prisma:generate": "prisma generate",
     "prisma:seed": "tsx prisma/seed.ts",
     "test": "vitest run",
@@ -24,7 +29,9 @@
     "@fastify/swagger": "^8.14.0",
     "@fastify/swagger-ui": "^3.0.0",
     "@fastify/websocket": "^10.0.1",
+    "@modelcontextprotocol/ext-apps": ">=0.1.0",
     "@modelcontextprotocol/sdk": "^1.30.0",
+    "@nitrostack/core": "^1.0.14",
     "@prisma/client": "^5.14.0",
     "bcryptjs": "^2.4.3",
     "bullmq": "^5.7.14",
@@ -40,6 +47,7 @@
     "zod": "^3.23.8"
   },
   "devDependencies": {
+    "@nitrostack/cli": "^1.0.15",
     "@types/bcryptjs": "^2.4.6",
     "@types/node": "^20.12.12",
     "@types/node-cron": "^3.0.11",
@@ -52,5 +60,8 @@
     "tsx": "^4.10.5",
     "typescript": "^5.4.5",
     "vitest": "^1.6.0"
+  },
+  "nitrostack": {
+    "skillsVersion": "1.0.0"
   }
 }
