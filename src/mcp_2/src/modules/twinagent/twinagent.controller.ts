@@ -328,11 +328,15 @@ export class TwinAgentController {
     ],
   })
   async getProjectRiskPrompt(args: { projectId: string }, ctx: ExecutionContext) {
+    const pId = args.projectId || 'proj-alpha';
     return {
       messages: [
         {
           role: 'user',
-          content: `Analyze project risk metrics for Project ID: ${args.projectId || 'N/A'}. Use the 'predictProjectRisk' and 'summarizeProject' MCP tools to evaluate delivery confidence, identify blocked dependencies, and provide a 3-step mitigation strategy.`,
+          content: {
+            type: 'text',
+            text: `Analyze project risk metrics for Project ID: ${pId}. Use the 'predictProjectRisk' and 'summarizeProject' MCP tools to evaluate delivery confidence, identify blocked dependencies, and provide a 3-step mitigation strategy.`,
+          },
         },
       ],
     };
@@ -346,11 +350,15 @@ export class TwinAgentController {
     ],
   })
   async getWorkloadRebalancePrompt(args: { organizationId: string }, ctx: ExecutionContext) {
+    const orgId = args.organizationId || 'org-101';
     return {
       messages: [
         {
           role: 'user',
-          content: `Scan organization ID: ${args.organizationId || 'N/A'} using 'predictBurnout' and 'recommendAssignee' MCP tools. Identify employees operating at over 120% capacity and suggest optimal task reallocations to prevent burnout.`,
+          content: {
+            type: 'text',
+            text: `Scan organization ID: ${orgId} using 'predictBurnout' and 'recommendAssignee' MCP tools. Identify employees operating at over 120% capacity and suggest optimal task reallocations to prevent burnout.`,
+          },
         },
       ],
     };
@@ -364,11 +372,15 @@ export class TwinAgentController {
     ],
   })
   async getOrgMemoryPrompt(args: { topic: string }, ctx: ExecutionContext) {
+    const t = args.topic || 'architecture';
     return {
       messages: [
         {
           role: 'user',
-          content: `Query enterprise memory for '${args.topic || 'general decisions'}' using 'searchKnowledge' and 'twinagent://memory/timeline' resource. Synthesize key architectural/strategic decisions and lessons learned.`,
+          content: {
+            type: 'text',
+            text: `Query enterprise memory for '${t}' using 'searchKnowledge' and 'twinagent://memory/timeline' resource. Synthesize key architectural/strategic decisions and lessons learned.`,
+          },
         },
       ],
     };

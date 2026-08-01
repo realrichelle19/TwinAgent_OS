@@ -57,3 +57,6 @@ uploads/
 tokens.json
 
 /generated/prisma
+
+# Added by nitrostack pack
+.git/
