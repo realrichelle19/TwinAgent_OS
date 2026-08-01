@@ -1,13 +1,7 @@
 /**
- * Pizzaz MCP Server
+ * TwinAgent OS NitroStack MCP Server
  * 
- * Pizza shop finder with interactive map widgets.
- * Showcases NitroStack Widget SDK features including:
- * - useTheme() for dark mode
- * - useWidgetState() for persistent favorites
- * - useDisplayMode() for fullscreen support
- * - useMaxHeight() for responsive layouts
- * - useWidgetSDK() for tool calling and navigation
+ * Official Enterprise Digital Twin MCP Server built with NitroStack.
  */
 
 import 'dotenv/config';
@@ -18,13 +12,12 @@ import { AppModule } from './app.module.js';
  * Bootstrap the application
  */
 async function bootstrap() {
-    // Create and start the MCP server
-    const server = await McpApplicationFactory.create(AppModule);
-    await server.start();
+  const server = await McpApplicationFactory.create(AppModule);
+  await server.start();
 }
 
 // Start the application
 bootstrap().catch((error) => {
-    console.error('❌ Failed to start server:', error);
-    process.exit(1);
+  console.error('❌ Failed to start TwinAgent OS MCP server:', error);
+  process.exit(1);
 });
