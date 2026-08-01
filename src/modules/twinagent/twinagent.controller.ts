@@ -7,19 +7,19 @@ import {
   ExecutionContext,
   z,
 } from '@nitrostack/core';
-import { projectService } from '@core/projects/service.js';
-import { taskService } from '@core/tasks/service.js';
-import { userService } from '@core/users/service.js';
-import { digitalTwinService } from '@core/digitalTwin/service.js';
-import { predictionEngineService } from '@core/prediction/service.js';
-import { memoryService } from '@core/memory/service.js';
-import { graphService } from '@core/graph/service.js';
-import { workflowService } from '@core/workflows/service.js';
-import { approvalService } from '@core/approval/service.js';
-import { integrationsService } from '@core/integrations/service.js';
-import { analyticsService } from '@core/analytics/service.js';
-import { searchService } from '@core/search/service.js';
-import { auditService } from '@core/audit/service.js';
+import { projectService } from '../../core/projects/service.js';
+import { taskService } from '../../core/tasks/service.js';
+import { userService } from '../../core/users/service.js';
+import { digitalTwinService } from '../../core/digitalTwin/service.js';
+import { predictionEngineService } from '../../core/prediction/service.js';
+import { memoryService } from '../../core/memory/service.js';
+import { graphService } from '../../core/graph/service.js';
+import { workflowService } from '../../core/workflows/service.js';
+import { approvalService } from '../../core/approval/service.js';
+import { integrationsService } from '../../core/integrations/service.js';
+import { analyticsService } from '../../core/analytics/service.js';
+import { searchService } from '../../core/search/service.js';
+import { auditService } from '../../core/audit/service.js';
 import { TaskStatus, TaskPriority } from '@prisma/client';
 
 @Controller()
