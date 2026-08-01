@@ -9,6 +9,7 @@
     "build": "prisma generate && nitrostack-cli build",
     "start": "npm run build && nitrostack-cli start",
     "start:prod": "nitrostack-cli start",
+    "typecheck": "tsc --noEmit",
     "generate:types": "nitrostack-cli generate types",
     "upgrade": "nitrostack-cli upgrade",
     "install:all": "nitrostack-cli install",

@@ -18,14 +18,21 @@ WORKDIR /app
 
 ENV NODE_ENV=production
 
+RUN apk add --no-cache procps
+RUN npm install -g @nitrostack/cli --no-audit --no-fund --progress=false
+
 COPY package*.json ./
-RUN npm ci --only=production
+RUN npm ci --omit=dev
 
-COPY --from=builder /app/dist ./dist
-COPY --from=builder /app/prisma ./prisma
-COPY --from=builder /app/node_modules/.prisma ./node_modules/.prisma
-COPY --from=builder /app/node_modules/@prisma ./node_modules/@prisma
+COPY --from=builder --chown=node:node /app/dist ./dist
+COPY --from=builder --chown=node:node /app/prisma ./prisma
+COPY --from=builder --chown=node:node /app/node_modules/.prisma ./node_modules/.prisma
+COPY --from=builder --chown=node:node /app/node_modules/@prisma ./node_modules/@prisma
 
+USER node
+
+EXPOSE 3000
 EXPOSE 4000
 
-CMD ["node", "dist/server.js"]
+CMD ["nitrostack-cli", "start"]
+
