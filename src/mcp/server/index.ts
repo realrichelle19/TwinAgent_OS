@@ -1,5 +1,6 @@
 import { Server } from '@modelcontextprotocol/sdk/server/index.js';
 import { StdioServerTransport } from '@modelcontextprotocol/sdk/server/stdio.js';
+import { SSEServerTransport } from '@modelcontextprotocol/sdk/server/sse.js';
 import {
   CallToolRequestSchema,
   ListToolsRequestSchema,
@@ -123,4 +124,26 @@ export async function startStdioMCPServer() {
   const transport = new StdioServerTransport();
   await server.connect(transport);
   console.error('[MCP Server] TwinAgent OS Official MCP Server started over Stdio JSON-RPC transport.');
+}
+
+const sseTransports = new Map<string, SSEServerTransport>();
+
+export async function handleMCPSSE(req: any, reply: any) {
+  const transport = new SSEServerTransport('/api/v1/mcp/messages', reply.raw);
+  const server = createMCPServer();
+  await server.connect(transport);
+  sseTransports.set(transport.sessionId, transport);
+
+  req.raw.on('close', () => {
+    sseTransports.delete(transport.sessionId);
+  });
+}
+
+export async function handleMCPMessages(req: any, reply: any) {
+  const sessionId = req.query.sessionId as string;
+  const transport = sseTransports.get(sessionId);
+  if (!transport) {
+    return reply.status(400).send({ error: `Session not found: ${sessionId}` });
+  }
+  await transport.handlePostMessage(req.raw, reply.raw);
 }

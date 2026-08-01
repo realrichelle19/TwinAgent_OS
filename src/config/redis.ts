@@ -6,13 +6,13 @@ export const redis = new Redis(env.REDIS_URL, {
   lazyConnect: true,
 });
 
-redis.on('connect', () => console.log('[Redis] Connected to Redis server'));
-redis.on('error', (err) => console.warn('[Redis] Connection warning/error:', err.message));
+redis.on('connect', () => console.error('[Redis] Connected to Redis server'));
+redis.on('error', (err) => console.error('[Redis] Connection warning/error:', err.message));
 
 export async function connectRedis() {
   try {
     await redis.connect();
   } catch (error) {
-    console.warn('[Redis] Operating in fallback mode (Redis disconnected)');
+    console.error('[Redis] Operating in fallback mode (Redis disconnected)');
   }
 }
