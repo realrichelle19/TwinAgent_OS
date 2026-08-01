@@ -6,11 +6,11 @@
   "scripts": {
     "dev": "tsx watch src/server.ts",
     "mcp:start": "tsx src/mcp/cli.ts",
+    "mcp2:start": "npm --prefix src/mcp_2 start",
     "validate:mcp": "tsx scripts/validate-mcp.ts",
     "build": "tsc",
     "start": "node dist/server.js",
     "prisma:generate": "prisma generate",
-    "prisma:migrate": "prisma migrate dev",
     "prisma:seed": "tsx prisma/seed.ts",
     "test": "vitest run",
     "lint": "eslint src/**/*.ts",
