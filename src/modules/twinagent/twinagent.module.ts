@@ -4,7 +4,7 @@ import { TwinAgentController } from './twinagent.controller.js';
 @Module({
   name: 'twinagent',
   description: 'TwinAgent OS Enterprise Digital Twin Engine Module',
-  providers: [TwinAgentController],
+  controllers: [TwinAgentController],
   exports: [TwinAgentController],
 })
 export class TwinAgentModule {}
